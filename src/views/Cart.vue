@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    shouye
+    gouwuche
   </div>
 </template>
 
