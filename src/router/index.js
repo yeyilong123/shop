@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Category from '../views/Category.vue'
 import Cart from '../views/Cart.vue'
 import Profile from '../views/Profile.vue'
+import LoginProfile from '../views/LoginProfile'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,10 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: Profile
+  },{
+    path: '/loginprofile',
+    name: 'loginprofile',
+    component: LoginProfile
   }
 ]
 

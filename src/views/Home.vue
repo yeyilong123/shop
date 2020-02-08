@@ -2,7 +2,7 @@
   <div class="container">
     <van-nav-bar title="首页" class="nav-title">
       <van-icon name="search" slot="left" size="1.3em"></van-icon>
-      <van-icon name="cart-o" slot="right" size="1.3em"></van-icon>
+      <van-icon @click="$router.push('/profile')" slot="right" size="0.9em">{{userInfo.userName}}</van-icon>
     </van-nav-bar>
 
     <div class="carousel">
@@ -53,6 +53,7 @@ import "swiper/dist/css/swiper.css";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import axios from "axios";
 import url from '@/service.config.js'
+import { mapState } from "vuex"
 
 export default {
   data() {
@@ -61,18 +62,28 @@ export default {
         {
           name: "img1",
           src:
-            "http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg"
+            "http://images.china-pub.com/edition07/images2012/900500/sfzmx_900500.png"
         },
         {
           name: "img2",
           src:
-            "http://yanxuan.nosdn.127.net/bff2e49136fcef1fd829f5036e07f116.jpg"
+            "http://images.china-pub.com/edition07/images2012/900500/sjzt1912_900500.png"
         },
         {
           name: "img3",
           src:
-            "http://yanxuan.nosdn.127.net/8e50c65fda145e6dd1bf4fb7ee0fcecc.jpg"
-        }
+            "http://images.china-pub.com/edition07/images2012/900500/yldxf_900500.jpg"
+        },
+        {
+          name: "img4",
+          src:
+            "http://images.china-pub.com/edition07/images2012/900500/xgboost_900500.jpg"
+        },
+        {
+          name: "img5",
+          src:
+            "http://images.china-pub.com/edition07/images2012/900500/java3_900500.jpg"
+        },
       ],
       hotProducts: [],
       swiperOption: {
@@ -92,6 +103,9 @@ export default {
     axios.get(url.getVarietyItem).then((res) => {
       this.varietyItem = res.data
     })
+  },
+  computed: {
+    ...mapState(['userInfo'])
   }
 };
 </script>
@@ -123,6 +137,10 @@ export default {
       height: 2.5rem;
     }
   }
+}
+
+.swiper-container{
+  border-radius: 0.3rem;
 }
 
 .hot {
