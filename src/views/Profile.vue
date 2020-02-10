@@ -98,8 +98,7 @@ export default {
             this.$toast.fail("注册失败");
           }
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
           this.$toast.fail("注册失败");
         });
       this.isDisable = false;
@@ -125,7 +124,7 @@ export default {
               .then(() => {
                 this.$toast.success("登录成功");
                 this.loginAction(res.data.userInfo);
-                this.$router.push("/");
+                this.$router.go(-1);
               })
               .catch(() => {
                 this.$toast.fail("登录失败");
@@ -136,8 +135,7 @@ export default {
             this.$toast.fail("密码错误");
           }
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
         });
       this.isDisable = false;
     }

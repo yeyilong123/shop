@@ -5,15 +5,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userInfo: {
-      userName: '未登录'
-    },
+    userInfo: {},
     isLogin: '/profile'
   },
   mutations: {
     changeLogin(state, status){
       state.userInfo = status
-      state.isLogin = '/loginprofile'
+      if(JSON.stringify(status) === '{}'){
+        state.isLogin = '/profile'
+      }else{
+        state.isLogin = '/loginprofile'
+      }
     },
     
   },
@@ -21,9 +23,6 @@ export default new Vuex.Store({
     loginAction({commit}, user){
       commit('changeLogin', user)
     }
-    // profileAction({commit}){
-    //   commit('isProfile')
-    // }
   },
   modules: {
   }

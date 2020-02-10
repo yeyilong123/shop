@@ -1,44 +1,17 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <van-tabbar active-color="#FF6000" v-model="active">
-      <van-tabbar-item icon="home-o" to="/">首页</van-tabbar-item>
-      <van-tabbar-item icon="apps-o" to="/category">分类</van-tabbar-item>
-      <van-tabbar-item icon="shopping-cart-o" to="/cart">购物车</van-tabbar-item>
-      <van-tabbar-item icon="user-o" :to="isLogin">我的</van-tabbar-item>
-    </van-tabbar>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
+
+    <router-view name="footer-bar"></router-view>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex"
-export default {
-  data() {
-    return {
-      active: 0,
-    };
-  },
-  methods: {
-    
-  },
-  computed: {
-    ...mapState(['isLogin'])
-  }
-};
+export default {};
 </script>
 
 <style lang="scss">
-.footer-bar {
-  display: flex;
-  background: #eee;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 1rem;
-  &-item {
-    flex-grow: 1;
-    text-align: center;
-    line-height: 1rem;
-  }
-}
 </style>

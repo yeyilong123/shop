@@ -3,19 +3,15 @@
     <van-nav-bar title="商品分类" class="category-title"></van-nav-bar>
     <div>
       <van-row>
-        <van-col span="7">
+        <van-col span="7" class="category-left">
           <van-sidebar v-model="activeKey" class="category-nav" @change="selectCategory">
             <van-sidebar-item title="中国大陆" />
+            <van-sidebar-item title="台湾" />
             <van-sidebar-item title="英国" />
             <van-sidebar-item title="美国" />
             <van-sidebar-item title="德国" />
-            <van-sidebar-item title="新西兰" />
             <van-sidebar-item title="法国" />
-            <van-sidebar-item title="台湾" />
-            <van-sidebar-item title="韩国" />
-            <van-sidebar-item title="俄罗斯" />
             <van-sidebar-item title="日本" />
-            <van-sidebar-item title="加拿大" />
             <van-sidebar-item title="其他地区" />
           </van-sidebar>
         </van-col>
@@ -28,7 +24,7 @@
               @load="onLoad"
               class="category-content"
             >
-              <div class="category-content-item" v-for="(item, index) in productList" :key="index">
+              <div class="category-content-item" @click="goDetail(item._id)" v-for="(item, index) in productList" :key="index">
                 <img :src="item.img" alt />
                 <div class="category-content-item-detail">
                   <p class="category-content-item-detail-name">{{item.attr.name}}</p>
@@ -68,41 +64,27 @@ export default {
           this.country = "中国大陆";
           break;
         case 1:
-          this.country = "英国";
+          this.country = "台湾";
           break;
         case 2:
-          this.country = "美国";
+          this.country = "英国";
           break;
         case 3:
-          this.country = "德国";
+          this.country = "美国";
           break;
         case 4:
-          this.country = "新西兰";
+          this.country = "德国";
           break;
         case 5:
           this.country = "法国";
           break;
         case 6:
-          this.country = "台湾";
-          break;
-        case 7:
-          this.country = "意大利";
-          break;
-        case 8:
-          this.country = "韩国";
-          break;
-        case 9:
-          this.country = "俄罗斯";
-          break;
-        case 10:
           this.country = "日本";
           break;
-        case 11:
-          this.country = "加拿大";
-          break;
-        case 12:
+        case 7:
           this.country = "其他地区";
           break;
+        
         default:
           this.country = "中国大陆";
       }
@@ -122,14 +104,13 @@ export default {
         }
       })
         .then(res => {
-          console.log(res);
           if (res.data.length != 0) {
             this.productList = this.productList.concat(res.data);
           } else {
             this.finished = true;
           }
           this.isLoading = false;
-          // this.Loading = false
+          this.Loading = false
         })
         .catch(err => {
           console.log(err);
@@ -142,6 +123,14 @@ export default {
     onRefresh() {
       this.productList = [];
       this.getProductList();
+    },
+    goDetail(id){
+      this.$router.push({
+        path: '/detail',
+        query: {
+          id: id
+        }
+      })
     }
   }
 };
@@ -157,6 +146,9 @@ export default {
     z-index: 999;
     background: #fafafa;
     height: 0.9rem;
+  }
+  &-left{
+    position: fixed;
   }
   &-nav {
     margin-top: 0.9rem;
@@ -176,8 +168,9 @@ export default {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      margin-right: 0.1rem;
       img {
-        width: 1.9rem;
+        width: 1.8rem;
         height: 2rem;
         flex: 3;
       }
