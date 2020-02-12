@@ -112,8 +112,7 @@ export default {
           this.isLoading = false;
           this.Loading = false
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
         });
     },
     onLoad() {
@@ -146,9 +145,6 @@ export default {
     z-index: 999;
     background: #fafafa;
     height: 0.9rem;
-  }
-  &-left{
-    position: fixed;
   }
   &-nav {
     margin-top: 0.9rem;

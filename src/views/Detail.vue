@@ -55,8 +55,7 @@ export default {
       .then(res => {
         this.detail = res.data;
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
       });
   },
   methods: {
@@ -76,7 +75,6 @@ export default {
           }
         })
           .then(res => {
-            console.log(res);
             if (res.data == "") {
               axios({
                 url: url.addToCart,
@@ -94,8 +92,7 @@ export default {
                     this.$toast.fail('哎呀出错啦，等会再试吧')
                   }
                 })
-                .catch(err => {
-                  console.log(err);
+                .catch(() => {
                   this.$toast.fail('哎呀出错啦，等会再试吧')
                 });
             } else {
@@ -114,14 +111,12 @@ export default {
                     this.$toast.fail('哎呀出错啦，等会再试吧')
                   }
                 })
-                .catch(err => {
-                  console.log(err);
+                .catch(() => {
                   this.$toast.fail('哎呀出错啦，等会再试吧')
                 });
             }
           })
-          .catch(err => {
-            console.log(err);
+          .catch(() => {
           });
       }
     },

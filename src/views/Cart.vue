@@ -43,13 +43,13 @@ export default {
         }
       })
         .then(res => {
-          console.log(res);
+          // console.log(res);
           for (let item of res.data) {
             this.productList.push(item);
           }
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
+          // console.log(err);
         });
     }
   },
@@ -74,8 +74,8 @@ export default {
         }else{
           this.$toast.fail('哎呀出错啦，等会再试吧')
         }
-      }).catch((err)=>{
-        console.log(err)
+      }).catch(()=>{
+        // console.log(err)
       })
     }
   },
