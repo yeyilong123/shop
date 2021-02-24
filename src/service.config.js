@@ -1,4 +1,4 @@
-const SERVERURL = 'http://www.yeyilong.site:3000/'
+const SERVERURL = 'http://localhost:3000/'
 
 const URL = {
     registUser: SERVERURL + 'user/registUser',
